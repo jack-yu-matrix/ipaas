@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="get-oauth2-token-template" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence>
+        <property name="messageType" scope="axis2" type="STRING" value="application/x-www-form-urlencoded"/>
+        <call>
+            <endpoint>
+                <http method="POST" uri-template="https://localhost:9443/oauth2/token?grant_type=password&amp;username={uri.var.apimgt_username}&amp;password={uri.var.apimgt_password}&amp;client_id={uri.var.apimgt_client_id}&amp;client_secret={uri.var.apimgt_client_secret}"/>
+                <property name="uri.var.apimgt_username" value="jackyu"/>
+                <property name="uri.var.apimgt_client_secret" value="mu4TElaecNMg9jPo4aXpmKcuk9Aa"/>
+                <property name="uri.var.apimgt_password" value="Abcd1234"/>
+                <property name="uri.var.apimgt_client_id" value="CvaTon6_vhssWEhaVcVjJWLjLl0a"/>
+            </endpoint>
+        </call>
+        <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+        <property expression="json-eval($.access_token)"
+            name="access_token" scope="default" type="STRING"
+            xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+        <log level="custom">
+            <property expression="json-eval($)"
+                name="this is access_token"
+                xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+        </log>
+        <property
+            expression="fn:concat('Bearer ',get-property('access_token'))"
+            name="apimgt_authorization" scope="default" type="STRING"
+            xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+
+        <log level="custom">
+            <property expression="get-property('apimgt_authorization')"
+                name="this is authorization"
+                xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns2="http://org.apache.synapse/xsd"/>
+        </log>
+    </sequence>
+</template>

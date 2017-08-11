@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="MyProxyService"
+       startOnLoad="true"
+       statistics="disable"
+       trace="disable"
+       transports="https,http">
+   <target>
+      <inSequence>
+
+         <!-->
+          call the get-oauth2-token-template
+           param: env_id, defined in get-oauth2-token-template
+          response the token string that you want(property name is [apimgt_authorization])
+         </!-->
+         <call-template target="get-oauth2-token-template">
+                <with-param name="apimgt_env" value="-uk_ifab-" />
+         </call-template>
+
+         <log level="custom">
+            <property expression="get-property('apimgt_authorization')"
+                      name="apimgt_authorization"/>
+         </log>
+         <property expression="get-property('apimgt_authorization')"
+                   name="Authorization"
+                   scope="transport"
+                   type="STRING"/>
+         <send>
+            <endpoint>
+               <http method="GET" uri-template="http://localhost:8888/hello/auth_test"/>
+            </endpoint>
+         </send>
+      </inSequence>
+      <outSequence>
+         <send/>
+      </outSequence>
+      <faultSequence/>
+   </target>
+   <description/>
+</proxy>
