@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence name="CN_OAuth2Token.xml" xmlns="http://ws.apache.org/ns/synapse">
-
-    <property name="Authorization" scope="transport" action="remove" />
-    
-    <property name="Authorization" value="Bearer 2570e88a405ade6642a54a4eb9f16d72"  type="STRING" action="set" scope="transport" />
-
-</sequence>

@@ -5,10 +5,10 @@
         <call>
             <endpoint>
                 <http method="POST" uri-template="https://localhost:9443/oauth2/token?grant_type=password&amp;username={uri.var.apimgt_username}&amp;password={uri.var.apimgt_password}&amp;client_id={uri.var.apimgt_client_id}&amp;client_secret={uri.var.apimgt_client_secret}"/>
-                <property name="uri.var.apimgt_username" value="jackyu"/>
-                <property name="uri.var.apimgt_client_secret" value="mu4TElaecNMg9jPo4aXpmKcuk9Aa"/>
-                <property name="uri.var.apimgt_password" value="Abcd1234"/>
-                <property name="uri.var.apimgt_client_id" value="CvaTon6_vhssWEhaVcVjJWLjLl0a"/>
+                <property name="uri.var.apimgt_username" value="-username-"/>
+                <property name="uri.var.apimgt_client_secret" value="-client_secret-"/>
+                <property name="uri.var.apimgt_password" value="-password-"/>
+                <property name="uri.var.apimgt_client_id" value="-client_id-"/>
             </endpoint>
         </call>
         <property name="messageType" scope="axis2" type="STRING" value="application/json"/>

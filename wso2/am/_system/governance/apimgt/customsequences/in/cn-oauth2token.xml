@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="cn-oauth2token.xml" xmlns="http://ws.apache.org/ns/synapse">
+
+    <property name="Authorization" scope="transport" action="remove" />
+    
+    <property name="Authorization" value="Bearer -access_token-"  type="STRING" action="set" scope="transport" />
+
+</sequence>
